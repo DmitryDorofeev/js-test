@@ -33,3 +33,19 @@ console.log(b);
 b.push(-89);
 
 console.log(b);
+
+console.log('===============================');
+
+
+var ar = {};
+console.log(ar);
+var i = 0;
+while(i < 10) {
+	ar[i] = i * i;
+	i++; 
+}
+ar.length = i;
+console.log(ar);
+for(var j = 0; j < a.length; j++) {
+    total += a[j];
+}
