@@ -137,4 +137,15 @@ o.setName("Frank2");
 console.log(o.getName()); // в книге тут print(); веселые опечаточки
 // o.setName(0); 
 
-
+function inspect(inspector, title) {
+    var expression, result;
+    if ("ignore" in arguments.callee) return;
+    while(true) {
+        var message = "";
+        if (title) message = title + "\n";
+        message += "Введите выражение, которое следует вычислить:";
+        expression = prompt(message, expression);
+        if (!expression) return;
+        result = inspector(expression);
+    }
+}

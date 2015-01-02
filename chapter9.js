@@ -1,0 +1,1 @@
+function Rectangle(w, h) {	this.width = w;	this.height = h;}var rect1 = new Rectangle(2, 4);var rect2 = new Rectangle(8.5, 11);
