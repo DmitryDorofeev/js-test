@@ -1,0 +1,75 @@
+<html>
+  <head>
+    <title>js 14</title>
+    <meta charset="utf-8">
+  </head>
+  <script charset="utf-8">
+
+
+  function getArgs() {
+    var args = {};
+    var query = location.search.substring(1);
+    var pairs = query.split("&");
+    for(var i = 0; i < pairs.length; i++) {
+      var pos = pairs[i].indexOf('=');
+      if (pos == 1) continue;
+      var argname = pairs[i].substring(0,pos);
+      var value = pairs[i].substring(pos+1);
+      value = decodeURIComponent(value);
+      args[argname] = value;
+    }
+    return args;
+  }
+
+  var windowWidth = window.outerWidth;
+  var windowHeight = window.outerHeight;
+  var windowX = window.screenX;
+  var windowY = window.screenY;
+  var viewportWidth = window.innerWidth;
+  var viewportHeight = window.innerHeight;
+  var horizontalScroll = window.pageXOffset;
+  var verticalScroll = window.pageYOffset; //ebat 0
+
+
+  getArgs();
+  </script>
+  <body>
+    yo!
+    <script>
+    var bounce = {
+      x:0, y:0, w:200, h:200,
+      dx:5, dy:5,
+      interval: 100,
+      win: null,
+      timer: null,
+      start: function() {
+        bounce.x = (screen.width - bounce.w)/2;
+        bounce.y = (screen.height - bounce.h)/2;
+        bounce.win = window.open('javascript:"<h1>ОТСОС!</h1>"', "",
+        "left=" + bounce.x + ",top=" + bounce.y +
+        ",width=" + bounce.w + ",height=" +bounce.h+
+        ",status=yes");
+
+        bounce.timer = setInterval(bounce.nextFrame, bounce.interval); },
+        stop: function() {
+          clearInterval(bounce.timer);
+          if (!bounce.win.closed) bounce.win.close();
+        },
+        nextFrame: function() {
+        if (bounce.win.closed) {
+          clearInterval(bounce.timer);
+          return; }
+          if ((bounce.x+bounce.dx > (screen.availWidth - bounce.w)) ||
+          (bounce.x + bounce.dx < 0)) bounce.dx = -bounce.dx;
+          if ((bounce.y+bounce.dy > (screen.availHeight - bounce.h)) ||
+          (bounce.y+bounce.dy < 0)) bounce.dy = -bounce.dy;
+          bounce.x += bounce.dx;
+          bounce.y += bounce.dy;
+          bounce.win.moveTo(bounce.x,bounce.y);
+          bounce.win.defaultStatus = "(" + bounce.x + "," + bounce.y + ")"; }
+        }
+      </script>
+      <button onclick="bounce.start()">Старт</button> <button onclick="bounce.stop()">Стоп</button>
+
+  </body>
+</html>
