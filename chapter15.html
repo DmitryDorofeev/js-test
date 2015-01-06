@@ -1,0 +1,33 @@
+<html>
+  <head>
+    <title>js 15</title>
+    <meta charset="utf-8"/>
+    <script charset="utf-8">
+      function hello() {
+        var w = window.open();
+        var d = w.document;
+        d.open();
+        d.write("<h1>sosi, fuck!</h1>");
+        d.close()
+      }
+
+      hello();
+      // hui tam
+    </script>
+    <script>
+    function countTags(n) {
+      var numtags = 0;
+      if (n.nodeType == 1)
+        numtags++;
+        var children = n.childNodes;
+        for(var i=0; i < children.length; i++) {
+          numtags += countTags(children[i]);
+        }
+        return numtags;
+      }
+      </script>
+    </head>
+    <body onload="alert('Количество тегов в документе: ' + countTags(document))"> Это <b>ХУЙНЯ</b>.
+    </body>
+  </body>
+</html>
