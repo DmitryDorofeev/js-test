@@ -1,0 +1,1 @@
+//Модулиvar Class = {};Class.define = function(data) { /* хня */ }Class.provides = function(o, c) { /* хня */ }
