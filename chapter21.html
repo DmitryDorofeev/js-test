@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <title>21 XSLT</title>
+    <script charset="utf-8">
+    var XML = {};
+    XML.Transformer = function(stylesheet) {
+      if (typeof stylesheet == "string") stylesheet = XML.load(stylesheet); this.stylesheet = stylesheet;
+      if (typeof XSLTProcessor != "undefined") {
+        this.processor = new XSLTProcessor();
+        this.processor.importStylesheet(this.stylesheet); }
+      };
+
+      XML.Transformer.prototype.transform = function(node, element) {
+
+        if (typeof element == "string") element = document.getElementById(element);
+          if (this.processor) {
+            var fragment = this.processor.transformToFragment(node, document);
+            element.innerHTML = "";
+            element.appendChild(fragment);
+          }
+          else if ("transformNode" in node) {
+            element.innerHTML = node.transformNode(this.stylesheet);
+          }
+  ￼￼        else {
+            throw "XSLT не поддерживается в этом броузере";
+          }
+        };
+        XML.transform = function(xmldoc, stylesheet, element) {
+          var transformer = new XML.Transformer(stylesheet); transformer.transform(xmldoc, element);
+        }
+    </script>
+  </head>
+  <body>
+    <!-- (потому что формат XML, как правило, более компактный, чем HTML)... Говно ваш XML!! Даешь JSON -->
+  </body>
+</html>
